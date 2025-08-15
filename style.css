@@ -870,3 +870,79 @@ html {
     display: inline-block;
   }
 }
+
+/* ========= Responsive Background & Hero Section ========= */
+
+/* Desktop and general fallback */
+html {
+  background: url('assets/hero-bg.jpg') no-repeat center center;
+  background-size: cover;          /* always covers the viewport */
+  background-attachment: fixed;    /* optional, fixed during scroll */
+}
+
+/* Overlay */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(255, 255, 255, 0.7); /* sheer white overlay */
+  z-index: 0;
+}
+
+/* Hero section content above overlay */
+.hero {
+  position: relative;
+  z-index: 1;
+  padding: 80px 20px 50px 20px;
+  min-height: 400px; /* ensures logo has space */
+  text-align: center;
+}
+
+/* Logo styling */
+.logo {
+  position: relative;
+  z-index: 1;
+}
+
+.logo img {
+  height: auto;
+  max-height: 400px; /* desktop size */
+  width: auto;
+  display: inline-block;
+  animation: pulseIn 1s ease-out 0.2s both;
+}
+
+/* Tablet screens (768px - 1024px) */
+@media (max-width: 1024px) {
+  html {
+    background-position: center top; /* focus on top for tablets */
+  }
+
+  .hero {
+    padding: 70px 20px 40px 20px;
+    min-height: 350px;
+  }
+
+  .logo img {
+    max-height: 300px;
+  }
+}
+
+/* Mobile screens (max-width: 768px) */
+@media (max-width: 768px) {
+  html {
+    background-position: center center; /* center focus for phones */
+    background-attachment: scroll;      /* better performance on mobile */
+  }
+
+  .hero {
+    padding: 60px 15px 30px 15px;
+    min-height: 300px;
+  }
+
+  .logo img {
+    max-height: 200px; /* smaller logo for mobile */
+    width: auto;
+  }
+}
