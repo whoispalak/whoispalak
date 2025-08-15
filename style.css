@@ -40,13 +40,79 @@ body {
   }
 }
 
-.hero {
-  text-align: center;
-  padding: 80px 20px 50px 20px;
-  position: relative;
-  z-index: 1;
+/* Hero container with two columns */
+.hero-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;       /* space between text and image */
+  flex-wrap: wrap; /* allows stacking on mobile */
+  padding: 60px 20px;
 }
 
+/* Hero text column */
+.hero-text {
+  flex: 1 1 300px;  /* grow/shrink with min width */
+  text-align: left;
+}
+
+/* Hero logo adjustments */
+.hero-text .logo img {
+  max-width: 300px; /* adjust size of logo */
+  height: auto;
+  display: block;
+  margin-bottom: 20px;
+  animation: pulseIn 1s ease-out 0.2s both;
+}
+
+/* Hero bio paragraph */
+.hero-text .bio {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--text-dark);
+  margin-bottom: 20px;
+}
+
+/* CTA button */
+.hero-text .cta-button {
+  font-size: 1.6rem;
+  padding: 10px 28px;
+}
+
+/* Hero image column */
+.hero-image {
+  flex: 1 1 250px;  /* image column */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Hero image column */
+.hero-image {
+  flex: 1 1 200px;  /* smaller image column */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-image img {
+  max-width: 200px; /* smaller width */
+  height: auto;
+  border-radius: 15px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  transition: transform 0.3s ease;
+}
+
+.hero-image img:hover {
+  transform: scale(1.05);
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .hero-image img {
+    max-width: 150px; /* even smaller on mobile */
+  }
+}
 .logo img {
   max-width: 90%;
   height: auto;
@@ -188,9 +254,25 @@ body {
   transform: skewX(-20deg);
 }
 
-.stats div:hover::before {
-  animation: shimmer 1s linear forwards;
+/* Smaller stats cards with shadow and new font */
+.stats div {
+  min-width: 90px;          /* smaller width */
+  padding: 8px 12px;        /* smaller padding */
+  font-size: 1rem;          /* smaller text */
+  font-family: 'Cormorant Garamond', serif;  /* new font */
+  border-radius: 12px;      /* rounded corners */
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* keeps shadow */
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
+/* Optional: hover effect (shimmer + slight lift) */
+.stats div:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 10px rgba(0,0,0,0.15);
+}
+
 
 .section-button {
   display: block;
@@ -211,6 +293,7 @@ body {
 .section-button:hover {
   transform: scale(1.05);
 }
+
 
 .social-links {
   text-align: center;
@@ -822,95 +905,6 @@ body {
   animation-duration: 10.5s;
   width: 16px;
   height: 14px;
-}
-/* Always cover background */
-html {
-  background: url('assets/hero-bg.jpg') no-repeat center 90%;
-  background-size: cover;
-}
-
-/* Mobile-specific fixes */
-@media (max-width: 768px) {
-
-  /* Use the same background as desktop to avoid missing mobile image */
-  html {
-    background: url('assets/hero-bg.jpg') no-repeat center center;
-    background-size: cover;
-  }
-
-  /* Overlay stays but behind content */
-  body::before {
-    content: "";
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: rgba(255, 255, 255, 0.7); /* keeps the sheer effect */
-    z-index: 0;
-  }
-
-  /* Hero section padding & height for mobile */
-  .hero {
-    padding: 60px 20px 40px 20px;
-    min-height: 300px; /* ensures logo has space */
-    position: relative;
-    z-index: 1;
-  }
-
-  /* Logo stays above overlay and scales nicely */
-  .logo {
-    position: relative;
-    z-index: 1;
-    text-align: center;
-  }
-
-  .logo img {
-    height: auto;      /* Let it scale naturally */
-    max-height: 200px; /* Limit size for mobile screens */
-    width: auto;
-    display: inline-block;
-  }
-}
-
-/* ========= Responsive Background & Hero Section ========= */
-
-/* Desktop and general fallback */
-html {
-  background: url('assets/hero-bg.jpg') no-repeat center center;
-  background-size: cover;          /* always covers the viewport */
-  background-attachment: fixed;    /* optional, fixed during scroll */
-}
-
-/* Overlay */
-body::before {
-  content: "";
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(255, 255, 255, 0.7); /* sheer white overlay */
-  z-index: 0;
-}
-
-/* Hero section content above overlay */
-.hero {
-  position: relative;
-  z-index: 1;
-  padding: 80px 20px 50px 20px;
-  min-height: 400px; /* ensures logo has space */
-  text-align: center;
-}
-
-/* Logo styling */
-.logo {
-  position: relative;
-  z-index: 1;
-}
-
-.logo img {
-  height: auto;
-  max-height: 400px; /* desktop size */
-  width: auto;
-  display: inline-block;
-  animation: pulseIn 1s ease-out 0.2s both;
 }
 /* Desktop and tablet fallback */
 html {
